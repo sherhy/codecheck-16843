@@ -2,23 +2,21 @@
 # -*- coding: utf-8 -*-
 import httplib
 import json
+import sys
 
 memo = {}
 conn = httplib.HTTPConnection("challenge-server.code-check.io",80)
 
 def main(argv):
 	if len(argv) != 2:
-		try:
-			argv[255]
-		except:
-			print "Input Rules!"
-			return 1
+		print "Input Rules!"
+		sys.exit(1)
 	seed = argv[0]
 	try:
 		n = int(argv[1])
 	except:
 		print "Input Rules!"
-		return 1
+		sys.exit(1)
 
 	ans = f(n, seed)
 	print ans
