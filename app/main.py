@@ -30,13 +30,16 @@ def askServer(n, seed):
 	# http://challenge-server.code-check.io/api/recursive/ask?n=3&seed=b0c2b89f-4862-4814-8728-ddb0b36076ba
 	conn.request("GET", "/api/recursive/ask?n="+str(n)+"&seed="+str(seed))
 	response = conn.getresponse()
-
+	abss =  response.read()
+	print abss
+	js = json.loads(abss)
 	# hash has 'n','seed','result'
 	# {"seed":"b0c2b89f-4862-4814-8728-ddb0b36076ba","n":3,"result":114}
-	js = json.loads(response.read())
+	# js = json.loads(response.read())
 
-	memo[(seed, n)] = int(js['result'])
-	return js['result']
+
+	memo[(seed, n)] = int(js["result"])
+	return int(js['result'])
 
 def f(n, seed):
 	if n == 0:
@@ -60,10 +63,14 @@ def f(n, seed):
 			f1 = f(n-1, seed)
 		return f1 + f2 + f3 + f4
 	else: 
-		return askServer(n, seed)
+		f5 = isInMemo(n, seed)
+		if f5 == False:
+			return askServer(n, seed)
+		else:
+			return f5
 
 def isInMemo(n, seed):
-	if (seed,n) in memo:
+	if ((seed,n) in memo):
 		return memo[(seed,n)]
 	else:
 		return False
