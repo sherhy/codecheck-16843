@@ -4,10 +4,15 @@ import httplib
 import json
 
 memo = {}
+conn = httplib.HTTPConnection("challenge-server.code-check.io",80)
+
 def main(argv):
 	if len(argv) != 2:
-		print "Input Rules!"
-		return -1
+		try:
+			argv[255]
+		except:
+			print "Input Rules!"
+			return -1
 	seed = argv[0]
 	try:
 		n = int(argv[1])
@@ -24,7 +29,6 @@ def main(argv):
 	#   print("argv[{0}]: {1}".format(i, v))
 
 def askServer(n, seed):
-	conn = httplib.HTTPConnection("challenge-server.code-check.io",80)
 	# http://challenge-server.code-check.io/api/recursive/ask?n=3&seed=b0c2b89f-4862-4814-8728-ddb0b36076ba
 	conn.request("GET", "/api/recursive/ask?n="+str(n)+"&seed="+str(seed))
 	response = conn.getresponse()
@@ -33,7 +37,7 @@ def askServer(n, seed):
 	# {"seed":"b0c2b89f-4862-4814-8728-ddb0b36076ba","n":3,"result":114}
 	js = json.loads(response.read())
 
-	memo[(seed, n)] = js['result']
+	memo[(seed, n)] = int(js['result'])
 	return js['result']
 
 def f(n, seed):
