@@ -12,13 +12,13 @@ def main(argv):
 			argv[255]
 		except:
 			print "Input Rules!"
-			return -1
+			return 1
 	seed = argv[0]
 	try:
 		n = int(argv[1])
 	except:
 		print "Input Rules!"
-		return -1
+		return 1
 
 	ans = f(n, seed)
 	print ans
