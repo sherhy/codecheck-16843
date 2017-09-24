@@ -58,7 +58,7 @@ def f(n, seed):
 			f1 = f(n-1, seed)
 		return f1 + f2 + f3 + f4
 	else: 
-		askServer(n, seed)
+		return askServer(n, seed)
 
 def isInMemo(n, seed):
 	if (seed,n) in memo:
