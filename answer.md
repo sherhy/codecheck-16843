@@ -1,7 +1,10 @@
 [あなたのコードがどのように動作するのか、簡潔に説明してください。]
 sorry the code is dirty
-q4 seemed like a mashup of all the previous questions (memoization, recursive, api calling)
 
-i got a lot of time taken away forgetting to return the memo or checking the memo in the else clauses..
+main takes in the arguments and checks for erroneous inputs (sys.exit(1))
 
-i didn't know of sys.exit(1) so that took some time, too
+main calls f(n,seed), which starts the recursive calls
+
+f seeks results from the api call --> which stores its data in the memo hash before returning,
+
+f should check for data in memo hash before calling askServer()
