@@ -31,7 +31,6 @@ def askServer(n, seed):
 	conn.request("GET", "/api/recursive/ask?n="+str(n)+"&seed="+str(seed))
 	response = conn.getresponse()
 	abss =  response.read()
-	print abss
 	js = json.loads(abss)
 	# hash has 'n','seed','result'
 	# {"seed":"b0c2b89f-4862-4814-8728-ddb0b36076ba","n":3,"result":114}
