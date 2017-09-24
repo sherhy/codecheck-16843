@@ -7,13 +7,13 @@ memo = {}
 def main(argv):
 	if len(argv) != 2:
 		print "Input Rules!"
-		return 0
+		return -1
 	seed = argv[0]
 	try:
 		n = int(argv[1])
 	except:
 		print "Input Rules!"
-		return 0
+		return -1
 
 	ans = f(n, seed)
 	print ans
